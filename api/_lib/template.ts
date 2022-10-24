@@ -22,80 +22,101 @@ function getCss(theme: string, fontSize: string) {
         radial = 'dimgray';
     }
     return `
-    @font-face {
-        font-family: 'Inter';
-        font-style:  normal;
-        font-weight: normal;
-        src: url(data:font/woff2;charset=utf-8;base64,${rglr}) format('woff2');
+    html {
+        font-family: 'Montserrat', sans-serif;
     }
-
-    @font-face {
-        font-family: 'Inter';
-        font-style:  normal;
-        font-weight: bold;
-        src: url(data:font/woff2;charset=utf-8;base64,${bold}) format('woff2');
-    }
-
-    @font-face {
-        font-family: 'Vera';
-        font-style: normal;
-        font-weight: normal;
-        src: url(data:font/woff2;charset=utf-8;base64,${mono})  format("woff2");
-      }
 
     body {
-        background-size: 100px 100px;
-        height: 100vh;
+        margin: 0;
+        width: 1200px;
+        height: 600px;
+    }
+
+    .content {
+        margin: 42px;
         display: flex;
+        width: 100%;
+        height: 100%;
+        flex-direction: row;
+        justify-content: space-between;
     }
 
-    code {
-        color: #D400FF;
-        font-family: 'Vera';
-        white-space: pre-wrap;
-        letter-spacing: -5px;
-    }
-
-    code:before, code:after {
-        content: '\`';
-    }
-
-    .logo-wrapper {
+    .left_content {
         display: flex;
-        align-items: center;
-        align-content: center;
-        justify-content: center;
-        justify-items: center;
+        flex-direction: column;
+        width: 60%;
+        margin-top: 48px;
     }
 
-    .logo {
-        margin: 0 75px;
+    .right_content {
+        margin-right: 120px;
+        margin-bottom: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
-    .plus {
-        color: #BBB;
-        font-family: Times New Roman, Verdana;
-        font-size: 100px;
+    h1 {
+        margin: 0;
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 44px;
     }
 
-    .spacer {
-        margin: 150px;
+    h4 {
+        font-weight: 500;
+        font-size: 24px;
+        margin: 0;
     }
 
-    .emoji {
-        height: 1em;
-        width: 1em;
-        margin: 0 .05em 0 .1em;
-        vertical-align: -0.1em;
+    .subtitle {
+        display: inline-flex;
+        flex-direction: row;
     }
-    
-    .heading {
-        font-family: 'Montserrat', sans-serif;
-        font-size: ${sanitizeHtml(fontSize)};
-        font-style: normal;
-        color: ${foreground};
-        line-height: 1.8;
-    }`;
+
+    .details {
+        display: inline-flex;
+        flex-direction: column;
+        max-width: 70%;
+    }
+
+    .detailsItem {
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .tags {
+        display: inline-grid;
+        grid-template-columns: 50% 50%;
+        row-gap: 32px;
+        column-gap: 32px;
+        width: 70%;
+        margin-top: 16px;
+    }
+
+    .tagItem {
+        background: #F1F3F2;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .profileImage {
+        border-radius: 50%;
+    }
+
+    .default-row-spacer {
+        margin-bottom: 8px;
+    }
+
+    .default-spacer {
+        margin-right: 10px;
+    }
+
+    .large-row-spacer {
+        margin-bottom: 32px;
+    }
+    `;
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
@@ -109,18 +130,70 @@ export function getHtml(parsedReq: ParsedRequest) {
         ${getCss(theme, fontSize)}
     </style>
     <body>
-        <div>
-            <div class="heading">
-                <h4>Rohith's Badminton activity</h4>
-                <p>PlayZone, Indiranagar</p>
-                <p> 28th November, 2022</p>
-            </div>
+    <div class="content">
+        <div class="left_content">
+            <h1 class="default-row-spacer">Rohith's Badminton Doubles Activity</h4>
+                <div class="subtitle large-row-spacer">
+                    <h4 class="default-spacer">PlayZone, Indiranagar</h4>
+                    <h4 class="default-spacer">.</h4>
+                    <h4>28th November, 2022</h4>
+                </div>
+
+                <div class="details large-row-spacer">
+                    <div class="detailsItem">
+                        <p>Game Skill</p>
+                        <p>Intermediate - Professional</p>
+                    </div>
+                    <hr style="width:100%;text-align:left;margin-left:0">
+                    <div class="detailsItem">
+                        <p>Required Players</p>
+                        <p>04</p>
+                    </div>
+                </div>
+
+                <br />
+                <br />
+                <div class="tags">
+                    <div class="tagItem">
+                        <p>INR 20/ Player</p>
+                    </div>
+                    <div class="tagItem">
+                        <p>Tournament</p>
+                    </div>
+                    <div class="tagItem">
+                        <p>BYOE</p>
+                    </div>
+                    <div class="tagItem">
+                        <p>Cost Shared</p>
+                    </div>
+                </div>
         </div>
-    </body>
+
+        <div class="right_content">
+            <img class="profileImage" alt="Profile Picture"
+                src="https://playov2.gumlet.io/profiles/1664510675011-SAVED-20220930_0934_32348.jpg" width="310"
+                height="310" />
+            <img class="logo" alt="Profile Picture"
+                src="https://playo-website.gumlet.io/company/logonew-playo-03.png?auto=compress,format" width="300"
+                height="140" />
+        </div>
+    </div>
+</body>
 </html>`;
 }
 
-function getImage(src: string, width ='auto', height = '225') {
+
+function getProfileImage(src: string, width = '310', height = '310') {
+    return `<img
+        class="profileImage"
+        alt="Profile Picture"
+        src="${sanitizeHtml(src)}"
+        width="${sanitizeHtml(width)}"
+        height="${sanitizeHtml(height)}"
+    />`
+}
+
+function getImage(src: string, width = 'auto', height = '225') {
     return `<img
         class="logo"
         alt="Generated Image"
