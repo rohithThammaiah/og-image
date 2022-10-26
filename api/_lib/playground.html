@@ -1,12 +1,9 @@
-import {readFileSync} from 'fs';
-import {sanitizeHtml} from './sanitizer';
-import {ActivityDetails} from './types';
-
-const rglr = readFileSync(`${__dirname}/../_fonts/Montserrat-Regular.ttf`).toString('base64');
-const bold = readFileSync(`${__dirname}/../_fonts/Montserrat-Bold.ttf`).toString('base64');
-
-function getCss() {
-    return `
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<title>Generated Image</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
     html {
         font-family: 'Montserrat', sans-serif;
     }
@@ -30,7 +27,7 @@ function getCss() {
         display: flex;
         flex-direction: column;
         width: 60%;
-        justify-content: center;
+        margin-top: 48px;
     }
 
     .right_content {
@@ -43,19 +40,15 @@ function getCss() {
 
     h1 {
         margin: 0;
-        font: ${bold};
         font-weight: 600;
-        font-size: 56px;
-        line-height: 64px;
-        letter-spacing: 2px;
+        font-size: 36px;
+        line-height: 44px;
     }
 
     h4 {
-        font: ${rglr};
         font-weight: 500;
-        font-size: 40px;
+        font-size: 24px;
         margin: 0;
-        letter-spacing: 1px;
     }
 
     .subtitle {
@@ -95,7 +88,7 @@ function getCss() {
     }
 
     .default-row-spacer {
-        margin-bottom:50px;
+        margin-bottom: 8px;
     }
 
     .default-spacer {
@@ -105,62 +98,57 @@ function getCss() {
     .large-row-spacer {
         margin-bottom: 32px;
     }
-    `;
-}
+</style>
 
-export function getHtml(parsedReq: ActivityDetails, logo: String) {
-    const {location, date, time} = parsedReq;
-    return `<!DOCTYPE html>
-<html>
-    <meta charset="utf-8">
-    <title>Generated Image</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        ${getCss()}
-    </style>
-    <body>
+<body>
     <div class="content">
         <div class="left_content">
-            <h1 class="default-row-spacer">Rohith's Badminton Doubles Activity</h1>
-            <h4 class="default-row-spacer">${location}</h4>
-            <h4 class="default-row-spacer">${date}</h4>
-            <h4 class="default-row-spacer">${time}</h4>
+            <h1 class="default-row-spacer">Rohith's Badminton Doubles Activity</h4>
+                <div class="subtitle large-row-spacer">
+                    <h4 class="default-spacer">PlayZone, Indiranagar</h4>
+                    <h4 class="default-spacer">.</h4>
+                    <h4>28th November, 2022</h4>
+                </div>
+
+                <div class="details large-row-spacer">
+                    <div class="detailsItem">
+                        <p>Game Skill</p>
+                        <p>Intermediate - Professional</p>
+                    </div>
+                    <hr style="width:100%;text-align:left;margin-left:0">
+                    <div class="detailsItem">
+                        <p>Required Players</p>
+                        <p>04</p>
+                    </div>
+                </div>
+
+                <br />
+                <br />
+                <div class="tags">
+                    <div class="tagItem">
+                        <p>INR 20/ Player</p>
+                    </div>
+                    <div class="tagItem">
+                        <p>Tournament</p>
+                    </div>
+                    <div class="tagItem">
+                        <p>BYOE</p>
+                    </div>
+                    <div class="tagItem">
+                        <p>Cost Shared</p>
+                    </div>
+                </div>
         </div>
 
         <div class="right_content">
             <img class="profileImage" alt="Profile Picture"
                 src="https://playov2.gumlet.io/profiles/1664510675011-SAVED-20220930_0934_32348.jpg" width="310"
                 height="310" />
-            <img class="logo" alt="Playo logo"
-                src="${logo}" width="300"
+            <img class="logo" alt="Profile Picture"
+                src="https://playo-website.gumlet.io/company/logonew-playo-03.png?auto=compress,format" width="300"
                 height="140" />
         </div>
     </div>
 </body>
-</html>`;
-}
 
-
-function getProfileImage(src: string, width = '310', height = '310') {
-    return `<img
-        class="profileImage"
-        alt="Profile Picture"
-        src="${sanitizeHtml(src)}"
-        width="${sanitizeHtml(width)}"
-        height="${sanitizeHtml(height)}"
-    />`
-}
-
-function getImage(src: string, width = 'auto', height = '225') {
-    return `<img
-        class="logo"
-        alt="Generated Image"
-        src="${sanitizeHtml(src)}"
-        width="${sanitizeHtml(width)}"
-        height="${sanitizeHtml(height)}"
-    />`
-}
-
-function getPlusSign(i: number) {
-    return i === 0 ? '' : '<div class="plus">+</div>';
-}
+</html>

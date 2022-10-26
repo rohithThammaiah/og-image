@@ -11,3 +11,21 @@ export interface ParsedRequest {
     widths: string[];
     heights: string[];
 }
+
+export interface ActivityRequest {
+    activityId: string;
+}
+
+export interface ActivityDetails {
+    activityId: string;
+    location: string;
+    date: string;
+    time: string;
+    hostInfo: UserInfo;
+}
+
+export interface UserInfo {
+    userId: string;
+    profilePic: string;
+    name: string;
+}

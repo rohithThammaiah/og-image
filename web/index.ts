@@ -201,7 +201,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
     const mdValue = md ? '1' : '0';
     const imageOptions = theme === 'light' ? imageLightOptions : imageDarkOptions;
     const url = new URL(window.location.origin);
-    url.pathname = `${encodeURIComponent(text)}.${fileType}`;
+    url.pathname = `807a1d67-6d27-4654-bd93-70b0edd0371c`;
     url.searchParams.append('theme', theme);
     url.searchParams.append('md', mdValue);
     url.searchParams.append('fontSize', fontSize);
